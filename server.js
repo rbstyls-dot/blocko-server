@@ -2,6 +2,7 @@
 const WebSocket = require('ws');
 const port = process.env.PORT || 8080;
 const wss = new WebSocket.Server({ port });
+console.log("Servidor iniciado en puerto " + port);
 require('events').EventEmitter.defaultMaxListeners = 100;
 
 let nextId = 1;
@@ -227,5 +228,6 @@ wss.on('connection', (ws) => {
         });
     });
 });
+
 
 console.log('WebSocket server started on port 8080');
