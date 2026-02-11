@@ -1,8 +1,16 @@
 // servidor codigo.txt
-const WebSocket = require('ws');
+const WebSocket = require("ws");
+const http = require("http");
+
 const port = process.env.PORT || 8080;
-const wss = new WebSocket.Server({ port });
-console.log("Servidor iniciado en puerto " + port);
+
+const server = http.createServer();
+const wss = new WebSocket.Server({ server });
+
+server.listen(port, () => {
+    console.log("Servidor corriendo en puerto " + port);
+});
+
 require('events').EventEmitter.defaultMaxListeners = 100;
 
 let nextId = 1;
@@ -231,3 +239,4 @@ wss.on('connection', (ws) => {
 
 
 console.log('WebSocket server started on port 8080');
+
